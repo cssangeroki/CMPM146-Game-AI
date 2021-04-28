@@ -1,0 +1,46 @@
+Harsewak Saini and Claudio Sangeroki
+CMPM 146 Assignment 6
+11/16/20
+
+Write Up
+------------------------------
+
+Grid Encoding - 
+
+	generate_successors:
+		-This function takes into account two selection methods.
+		-The first selection method was roulette-wheel selection. This first takes into account the sum of the fitness of the population. It then calculates the relative fitness.
+			It then sums up the probability of each member of the population and if it is better than a random number between 0 and the max fitness, then it will be chosen.
+		-The second selection method was tournament selection. We take an object from the beginning and the end and traverse to the middle. Each object is compared with each other.
+			The one with a better fitness will be added.
+		-This function then generates children according to the parents that were selected by each method.
+		-We cross both parent1 to parent2 and parent2 to parent1 to ensure all possibilities and double our population.
+
+	generate_children:
+		-This function employs a multi-point crossover technique with the given x and y switched with other's y and x.
+		-A multi-point crossover made the most sense, since the function loops through each x and y coordinate of the level, allowing change in multiple positions.
+		-It generates one child, from a combination of self and replacement items from other. 
+		-There's a 10% chance for each item to be crossed over with other's items at the current coordinates.
+		-If the item from other is a pipe or pipe top, the function does not perform a crossover.
+	mutate:
+		-This function replaces the current item at y and x if it is "unfit" and if the rate allows
+		-Each item at a coordinate has a 33% chance of being mutated if it is a wall or pipe/pipe top or empty block.
+		-An example of an "unfit" item would be a floating wall or floating pipe/pipe top or an empty block. 
+		-The item that replaces the wall is randomly decided to be either an empty space or a breakable block.
+		-The item that replaces the pipe/pipe top is randomly decided to either be a question mark block with a coin or one with a mushroom.
+		-The item that replaces the empty block is randomly decided to either be a question mark block with a coin or just a coin.
+
+Individual Encoding - 
+
+	fitness:
+		-This function is the same as the given calculate_fitness function. 
+		-It is unchanged because we had somewhat more consistent results and since it is the default, we figured it would be a reliable structure.
+	mutate:
+		-This function enters the if statement, if the random chance falls below 10% and new_genome has a length greater than 0.
+		-After a series of checks and if statements, it determines the type of item and calculates whether it should mutate it or not
+		-If the random number generators approve a mutation (by making the if conditions true), then the x, y, width, and/or height are changed according to the type of item. 
+			-For example, the x or height of the stairs is changed why of the hole, the width or x are changed.
+
+
+Unfortunately, we were unable to test the Individual_DE encoding due to some bugs that we weren't able to solve. 
+ 
