@@ -1,0 +1,11 @@
+INFO:root:
+Selector: High Level Ordering of Strategies
+| Sequence: Finisher Strategy
+| | Check: is_final_enemy_base
+| | Action: coup_de_grace
+| Sequence: Offensive Strategy
+| | Check: have_largest_fleet
+| | Action: attack_weakest_enemy_planet
+| Selector: Colonizaition Strategy
+| | Action: capture_neighbors
+| | Action: consolidate_ships
